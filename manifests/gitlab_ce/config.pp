@@ -1,4 +1,4 @@
-class gitlab::config (
+class gitlab::gitlab_ce::config (
   String $external_domain = $facts['fqdn'],
   Optional[String] $gitlab_ssh_host = undef,
   Boolean $use_ldap = false,

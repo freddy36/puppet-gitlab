@@ -1,5 +1,5 @@
-class gitlab::letsencrypt {
-  include gitlab::config
+class gitlab::gitlab_ce::letsencrypt {
+  include letsencrypt
 
   file { '/opt/gitlab/embedded/html/letsencrypt':
     ensure  => directory,
@@ -10,7 +10,7 @@ class gitlab::letsencrypt {
   }
 
   letsencrypt::certonly { 'gitlab':
-    domains              => [$gitlab::config::external_domain],
+    domains              => [$gitlab::gitlab_ce::config::external_domain],
     plugin               => 'webroot',
     webroot_paths        => ['/opt/gitlab/embedded/html/letsencrypt'],
     manage_cron          => true,
