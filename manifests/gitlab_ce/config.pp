@@ -12,6 +12,7 @@ class gitlab::gitlab_ce::config (
   Optional[String] $ldap_base_dn = undef,
   String $ldap_filter = '',
   Optional[String] $registry_external_url = undef,
+  Optional[String] $registry_http_addr = undef,
 ) {
   file { '/etc/gitlab/gitlab_http.rb':
     ensure  => file,
@@ -62,6 +63,7 @@ class gitlab::gitlab_ce::config (
       ldap_base_dn          => $ldap_base_dn,
       ldap_filter           => $ldap_filter,
       registry_external_url => $registry_external_url,
+      registry_http_addr    => $registry_http_addr,
     }),
     require => [Package['gitlab-ce'], File['/opt/gitlab/embedded/html/letsencrypt']],
     notify  => Exec['gitlab_ctl_reconfigure'],
