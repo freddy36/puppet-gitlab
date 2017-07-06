@@ -11,8 +11,8 @@ class gitlab::gitlab_ci_multi_runner {
   }
 
   service { 'gitlab-runner':
-    ensure => running,
-    enable => true,
+    ensure  => running,
+    enable  => true,
     require => Package['gitlab-ci-multi-runner']
   }
 }
