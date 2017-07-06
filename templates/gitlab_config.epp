@@ -19,6 +19,8 @@ nginx['listen_addresses'] = ['*', '[::]']
 external_url 'https://<%= $external_domain %>'
 nginx['ssl_certificate'] = "/etc/letsencrypt/live/<%= $external_domain %>/fullchain.pem"
 nginx['ssl_certificate_key'] = "/etc/letsencrypt/live/<%= $external_domain %>/privkey.pem"
+registry_nginx['ssl_certificate'] = "/etc/letsencrypt/live/<%= $external_domain %>/fullchain.pem"
+registry_nginx['ssl_certificate_key'] = "/etc/letsencrypt/live/<%= $external_domain %>/privkey.pem"
 nginx['redirect_http_to_https'] = true
 <%- } else { -%>
 external_url 'http://<%= $external_domain %>'
