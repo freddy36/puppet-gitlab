@@ -11,6 +11,7 @@
      Optional[Boolean] $ldap_active_directory = undef,
      Optional[String] $ldap_base_dn = undef,
      Optional[String] $ldap_filter = undef,
+     Optional[String] $registry_external_url = undef,
 | -%>
 # Managed by Puppet, do not edit!
 nginx['listen_addresses'] = ['*', '[::]']
@@ -22,6 +23,8 @@ nginx['redirect_http_to_https'] = true
 <%- } else { -%>
 external_url 'http://<%= $external_domain %>'
 <%- } -%>
+
+registry_external_url '<%= $registry_external_url %>'
 
 nginx['custom_gitlab_server_config'] = "location ^~ /.well-known { root /opt/gitlab/embedded/html/letsencrypt; }"
 
