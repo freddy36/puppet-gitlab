@@ -13,6 +13,7 @@
      Optional[String] $ldap_filter = undef,
      Optional[String] $registry_external_url = undef,
      Optional[String] $registry_http_addr = undef,
+     Optional[String] $pipeline_schedule_worker_cron = undef,
 | -%>
 # Managed by Puppet, do not edit!
 nginx['listen_addresses'] = ['*', '[::]']
@@ -37,6 +38,11 @@ nginx['custom_gitlab_server_config'] = "location ^~ /.well-known { root /opt/git
 <%- if $gitlab_ssh_host { -%>
 gitlab_rails['gitlab_ssh_host'] = '<%= $gitlab_ssh_host %>'
 <%- } -%>
+
+<%- if $pipeline_schedule_worker_cron { -%>
+gitlab_rails['pipeline_schedule_worker_cron'] = '<%= $pipeline_schedule_worker_cron %>'
+<%- } -%>
+
 <%- if $use_ldap { -%>
 # LDAP configuration
 gitlab_rails['ldap_enabled'] = true

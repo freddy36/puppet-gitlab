@@ -13,6 +13,7 @@ class gitlab::gitlab_ce::config (
   String $ldap_filter = '',
   Optional[String] $registry_external_url = undef,
   Optional[String] $registry_http_addr = undef,
+  Optional[String] $pipeline_schedule_worker_cron = undef,
 ) {
   file { '/etc/gitlab/gitlab_http.rb':
     ensure  => file,
@@ -64,6 +65,7 @@ class gitlab::gitlab_ce::config (
       ldap_filter           => $ldap_filter,
       registry_external_url => $registry_external_url,
       registry_http_addr    => $registry_http_addr,
+      pipeline_schedule_worker_cron => $pipeline_schedule_worker_cron,
     }),
     require => [Package['gitlab-ce'], File['/opt/gitlab/embedded/html/letsencrypt']],
     notify  => Exec['gitlab_ctl_reconfigure'],
