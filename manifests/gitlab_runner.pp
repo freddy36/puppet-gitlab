@@ -7,7 +7,7 @@ class gitlab::gitlab_runner {
 
   package {'gitlab-runner':
     ensure  => latest,
-    require => [Class['apt::update'], Apt::Source['gitlab_runner']],
+    require => [Class['apt::update'], Apt::Source['runner_gitlab-runner']],
   }
 
   service { 'gitlab-runner':
